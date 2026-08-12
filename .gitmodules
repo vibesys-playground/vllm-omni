@@ -1,0 +1,3 @@
+[submodule ".vibesys/tasks/show-o2-1.5b-hq/reference/Show-o"]
+	path = .vibesys/tasks/show-o2-1.5b-hq/reference/Show-o
+	url = https://github.com/showlab/Show-o.git
