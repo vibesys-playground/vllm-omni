@@ -25,8 +25,9 @@ across variants.
 
 ## Headline metric
 
-Use `latency.p50` from `benchmark/benchmark.py`'s measured-result JSON as the
-primary performance metric. Lower is better. `request_throughput`,
+Use `latency.p50` from
+`.vibesys/tasks/show-o2-1.5b-hq/benchmark/benchmark.py`'s measured-result JSON
+as the primary performance metric. Lower is better. `request_throughput`,
 `server_timings`, and per-phase timing fields are secondary diagnostics.
 
 ## Server contract
@@ -50,7 +51,7 @@ primary performance metric. Lower is better. `request_throughput`,
   image decode.
 - The reference config uses hidden size 1536, 10 diffusion layers, 27 x 27 image
   latents with 16 channels, and the `showlab/show-o2-1.5B-HQ` checkpoint pinned
-  in `reference/meta.json`.
+  in `.vibesys/tasks/show-o2-1.5b-hq/reference/meta.json`.
 - Optimize the fixed text-to-image path first: body forward, diffusion-head
   steps, VAE decode, image postprocessing, and response encoding.
 - Use CUDA-specific optimizations for the H100 target. Useful directions from
@@ -73,3 +74,9 @@ scratch. Build the candidate by adapting vllm-omni's Show-o2 / omni-modality
 serving path to this server contract. Repository files are ordinary mutable
 candidate code; `.vibesys/` contains the task definition and generated VibeSys
 state.
+
+Before using the reference implementation, validate its pinned source checkout:
+
+```bash
+python .vibesys/tasks/show-o2-1.5b-hq/preflight.py
+```

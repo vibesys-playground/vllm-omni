@@ -8,12 +8,23 @@ vibesys --project . --task show-o2-1.5b-hq \
 ```
 
 This bundle targets `showlab/show-o2-1.5B-HQ`, a Show-o2 text-to-image
-checkpoint. The reference folder uses a pinned git submodule for the official
-Show-o inference source and keeps model weights out of git. On first real use,
-the loader downloads:
+checkpoint. `.vibesys/tasks/show-o2-1.5b-hq/reference/` uses a pinned git
+submodule for the official Show-o inference source and keeps model weights out
+of git.
+
+Initialize the reference and any nested submodules from the repository root,
+then run the lightweight preflight:
+
+```bash
+git submodule update --init --recursive \
+  .vibesys/tasks/show-o2-1.5b-hq/reference/Show-o
+python .vibesys/tasks/show-o2-1.5b-hq/preflight.py
+```
+
+On first real use, the loader downloads:
 
 - `showlab/show-o2-1.5B-HQ` into the repo HF cache and links it as
-  `reference/model`
+  `.vibesys/tasks/show-o2-1.5b-hq/reference/model`
 - `Wan-AI/Wan2.1-T2V-14B/Wan2.1_VAE.pth` through `huggingface_hub`
 - the Qwen2.5 tokenizer/config and SigLIP weights used by the official model
 
