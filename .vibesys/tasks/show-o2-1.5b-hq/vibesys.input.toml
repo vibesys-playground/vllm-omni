@@ -4,9 +4,9 @@ version = 1
 domain = "llm-serving"
 
 [accuracy]
-command = ["uv", "run", "python", ".vibesys/tasks/show-o2-1.5b-hq/accuracy_checker/checker.py"]
+command = ["uv", "run", "--no-project", "--with", "httpx", "python", ".vibesys/tasks/show-o2-1.5b-hq/accuracy_checker/checker.py"]
 timeout_seconds = 120
 
 [benchmark]
-command = ["uv", "run", "python", ".vibesys/tasks/show-o2-1.5b-hq/benchmark/benchmark.py"]
+command = ["uv", "run", "--no-project", "--with", "httpx", "python", ".vibesys/tasks/show-o2-1.5b-hq/benchmark/benchmark.py"]
 timeout_seconds = 300
